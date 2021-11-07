@@ -34,4 +34,10 @@ button {
   border-radius: 5px;
   font-family: inherit;
   margin: 0.5em auto;
+  cursor: pointer;
+}
+
+button:disabled {
+  border: 1px solid #ddd;
+  cursor: not-allowed;
 }
