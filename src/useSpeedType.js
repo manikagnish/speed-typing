@@ -6,6 +6,7 @@ export default function useSpeedType(gameTime = 60) {
   const [wordCount, setWordCount] = useState(0);
   const [start, setStart] = useState(false);
   const [playAgain, setPlayAgain] = useState('Start');
+  const [quote, setQuote] = useState('hello world!');
 
   const inputRef = useRef(null);
 
@@ -25,6 +26,15 @@ export default function useSpeedType(gameTime = 60) {
     setWordCount(totalWords);
   }
 
+  function divider() {
+    fetch('https://api.quotable.io/random')
+      .then(res => res.json())
+      .then(data => {
+        setQuote(quote => (quote = data.content));
+        setQuote(quote => quote.split('').map(qt => <span>{qt}</span>));
+      });
+  }
+
   useEffect(() => {
     if (timeRemaining > 0 && start) {
       setTimeout(() => {
@@ -35,6 +45,10 @@ export default function useSpeedType(gameTime = 60) {
     }
   }, [timeRemaining, start]);
 
+  useEffect(() => {
+    divider();
+  }, []);
+
   return [
     start,
     inputRef,
@@ -44,5 +58,6 @@ export default function useSpeedType(gameTime = 60) {
     startGame,
     playAgain,
     wordCount,
+    quote,
   ];
 }

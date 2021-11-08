@@ -10,11 +10,13 @@ function App() {
     startGame,
     playAgain,
     wordCount,
+    quote,
   ] = useSpeedType(10);
 
   return (
     <div>
       <h1>Test your typing speed!</h1>
+      <p>{quote}</p>
       <textarea
         disabled={!start}
         ref={inputRef}
