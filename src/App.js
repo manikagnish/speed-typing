@@ -21,7 +21,9 @@ function App() {
         disabled={!start}
         ref={inputRef}
         value={text}
-        onChange={e => setText(e.target.value)}
+        onChange={e => {
+          setText(e.target.value);
+        }}
       />
       <p>Time remaining: {timeRemaining}</p>
       <button onClick={startGame} disabled={start}>
