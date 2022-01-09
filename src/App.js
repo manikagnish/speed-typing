@@ -1,4 +1,4 @@
-import useSpeedType from './useSpeedType';
+import useSpeedType from "./useSpeedType";
 
 function App() {
   const [
@@ -11,7 +11,7 @@ function App() {
     playAgain,
     wordCount,
     quote,
-  ] = useSpeedType(10);
+  ] = useSpeedType(60);
 
   return (
     <div>
@@ -21,7 +21,7 @@ function App() {
         disabled={!start}
         ref={inputRef}
         value={text}
-        onChange={e => {
+        onChange={(e) => {
           setText(e.target.value);
         }}
       />

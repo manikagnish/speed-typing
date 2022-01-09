@@ -6,14 +6,23 @@ export default function useSpeedType(gameTime = 60) {
   const [wordCount, setWordCount] = useState(0);
   const [start, setStart] = useState(false);
   const [playAgain, setPlayAgain] = useState("Start");
-  const [quote, setQuote] = useState(
-    "The quick brown fox jumps over the lazy dog."
-  );
+  const [quote, setQuote] = useState("");
   const [quoteArr, setQuoteArr] = useState("");
   const [textArr, setTextArr] = useState("");
+  const [addLine, setAddLine] = useState(0);
   let words = 0;
 
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    const fetchQuote = async () => {
+      const res = await fetch("https://api.quotable.io/random");
+      const data = await res.json();
+      setQuote(quote + data.content + " ");
+    };
+
+    fetchQuote();
+  }, [addLine]);
 
   function startGame() {
     setText("");
@@ -33,6 +42,10 @@ export default function useSpeedType(gameTime = 60) {
 
   useEffect(() => {
     text !== "" && splitText(text, setTextArr);
+
+    if (textArr.length === quoteArr.length - 1) {
+      setAddLine(Math.random());
+    }
   }, [text]);
 
   function endGame() {
