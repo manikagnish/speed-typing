@@ -57,10 +57,10 @@ button:disabled {
 }
 
 .correct {
-  color: rgb(45, 196, 45);
+  color: #8cff3f;
 }
 
 .incorrect {
-  color: rgb(201, 17, 17);
+  color: rgb(221, 74, 74);
   text-decoration: underline;
 }
