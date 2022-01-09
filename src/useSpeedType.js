@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function useSpeedType(gameTime = 60) {
+export default function useSpeedType(gameTime) {
   const [text, setText] = useState("");
   const [timeRemaining, setTimeRemaining] = useState(gameTime);
   const [wordCount, setWordCount] = useState(0);
@@ -10,9 +10,12 @@ export default function useSpeedType(gameTime = 60) {
   const [quoteArr, setQuoteArr] = useState("");
   const [textArr, setTextArr] = useState("");
   const [addLine, setAddLine] = useState(0);
-  let words = 0;
 
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    setTimeRemaining(gameTime);
+  }, [gameTime]);
 
   useEffect(() => {
     const fetchQuote = async () => {
@@ -56,10 +59,9 @@ export default function useSpeedType(gameTime = 60) {
     // compare quoteArr and textArr
     for (let i = 0; i < quoteArr.length; i++) {
       if (quoteArr[i] === textArr[i]) {
-        words++;
+        setWordCount((prevCount) => prevCount + 1);
       }
     }
-    setWordCount(words);
   }
 
   useEffect(() => {

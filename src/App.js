@@ -1,6 +1,9 @@
+import { useState } from "react";
 import useSpeedType from "./useSpeedType";
 
 function App() {
+  const [gameTime, setGameTime] = useState(30);
+
   const [
     start,
     inputRef,
@@ -11,7 +14,7 @@ function App() {
     playAgain,
     wordCount,
     quote,
-  ] = useSpeedType(60);
+  ] = useSpeedType(gameTime);
 
   const displayQuote = quote.split("");
   const userInput = text.split("");
@@ -19,6 +22,14 @@ function App() {
   return (
     <div>
       <h1>Test your typing speed!</h1>
+      <div className="set-time">
+        <p>Select game time: </p>
+        <div className="btn-container">
+          <button onClick={() => setGameTime(30)}>30</button>
+          <button onClick={() => setGameTime(60)}>60</button>
+          <button onClick={() => setGameTime(120)}>120</button>
+        </div>
+      </div>
       <p>
         {displayQuote.map((s, i) => {
           let cname;

@@ -20,7 +20,7 @@ body {
 
 h1 {
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 1.5em;
 }
 
 textarea {
@@ -39,6 +39,7 @@ textarea:disabled {
 p {
   text-align: center;
   font-size: 2rem;
+  margin-bottom: 0.5em;
 }
 
 button {
@@ -63,4 +64,31 @@ button:disabled {
 .incorrect {
   color: rgb(221, 74, 74);
   text-decoration: underline;
+}
+
+.set-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  margin-left: 1em;
+}
+
+.btn-container button {
+  margin-right: 1em;
+  padding: 0.1em 0.8em;
+  margin-top: 0;
+  background-color: #eee;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn-container button:hover,
+.btn-container button:active,
+.btn-container button:focus {
+  background-color: #2561d1;
+  color: #fff;
 }
