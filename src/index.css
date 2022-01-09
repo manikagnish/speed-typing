@@ -11,9 +11,11 @@ html {
 
 body {
   font-size: 1.6rem;
-  font-family: 'Poppins', 'sans-serif';
+  font-family: "Poppins", "sans-serif";
   min-height: 100vh;
   padding: 2em 10vw;
+  background-color: #333;
+  color: #eee;
 }
 
 h1 {
