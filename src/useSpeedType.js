@@ -2,14 +2,15 @@ import { useState, useEffect, useRef } from "react";
 
 export default function useSpeedType(gameTime) {
   const [text, setText] = useState("");
-  const [timeRemaining, setTimeRemaining] = useState(gameTime);
   const [wordCount, setWordCount] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(gameTime);
   const [start, setStart] = useState(false);
   const [playAgain, setPlayAgain] = useState("Start");
   const [quote, setQuote] = useState("");
   const [quoteArr, setQuoteArr] = useState("");
   const [textArr, setTextArr] = useState("");
-  const [addLine, setAddLine] = useState(0);
+  const [addLine, setAddLine] = useState(true);
+  const [disable, setDisable] = useState(false);
 
   const inputRef = useRef(null);
 
@@ -29,7 +30,9 @@ export default function useSpeedType(gameTime) {
 
   function startGame() {
     setText("");
+    setWordCount(0);
     setStart(true);
+    setDisable(true);
     setTimeout(() => {
       inputRef.current.focus();
     }, 100);
@@ -47,7 +50,7 @@ export default function useSpeedType(gameTime) {
     text !== "" && splitText(text, setTextArr);
 
     if (textArr.length === quoteArr.length - 1) {
-      setAddLine(Math.random());
+      setAddLine(!addLine);
     }
   }, [text]);
 
@@ -55,12 +58,33 @@ export default function useSpeedType(gameTime) {
     setStart(false);
     setPlayAgain("Play Again");
     setTimeRemaining(gameTime);
+    setDisable(false);
 
+    // TODO: speed calculator
+    const correctWords = [];
+    console.log("correctWords: ", correctWords);
     // compare quoteArr and textArr
     for (let i = 0; i < quoteArr.length; i++) {
       if (quoteArr[i] === textArr[i]) {
-        setWordCount((prevCount) => prevCount + 1);
+        correctWords.push(textArr[i]);
       }
+    }
+    console.log("correctWords updated: ", correctWords);
+    // count no of characters in correctWords array
+    correctWords.forEach((word) => {
+      console.log(word.length);
+      setWordCount((prevCount) => prevCount + word.length);
+      console.log("wordCount", wordCount);
+    });
+
+    console.log("wordcount: ", wordCount);
+
+    if (gameTime === 30) {
+      setWordCount((wordCount) => wordCount / 2.5);
+    } else if (gameTime === 60) {
+      setWordCount((wordCount) => wordCount / 5);
+    } else if (gameTime === 120) {
+      setWordCount((wordCount) => wordCount / 10);
     }
   }
 
@@ -84,5 +108,6 @@ export default function useSpeedType(gameTime) {
     playAgain,
     wordCount,
     quote,
+    disable,
   ];
 }

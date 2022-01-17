@@ -14,6 +14,7 @@ function App() {
     playAgain,
     wordCount,
     quote,
+    disable,
   ] = useSpeedType(gameTime);
 
   const displayQuote = quote.split("");
@@ -25,9 +26,15 @@ function App() {
       <div className="set-time">
         <p>Select game time: </p>
         <div className="btn-container">
-          <button onClick={() => setGameTime(30)}>30</button>
-          <button onClick={() => setGameTime(60)}>60</button>
-          <button onClick={() => setGameTime(120)}>120</button>
+          <button disabled={disable} onClick={() => setGameTime(30)}>
+            30
+          </button>
+          <button disabled={disable} onClick={() => setGameTime(60)}>
+            60
+          </button>
+          <button disabled={disable} onClick={() => setGameTime(120)}>
+            120
+          </button>
         </div>
       </div>
       <p>
@@ -44,6 +51,7 @@ function App() {
         })}
       </p>
       <textarea
+        style={{ position: "absolute", top: "-200%", left: "-500%" }}
         disabled={!start}
         ref={inputRef}
         value={text}
