@@ -19,6 +19,7 @@ function App() {
     disable,
     startTimer,
     showStartTimer,
+    showWpm,
   ] = useSpeedType(gameTime);
 
   const displayQuote = quote.split("");
@@ -86,9 +87,9 @@ function App() {
           {playAgain}
         </button>
 
-        {/* TODO: StartGameCounter component */}
-        {/* TODO: display WPM result in a component */}
-        {/* <p className="wpm">Your typing speed is: {wordCount} wpm</p> */}
+        {showWpm && (
+          <p className="wpm">Your typing speed is: {wordCount} wpm</p>
+        )}
       </main>
 
       <footer>

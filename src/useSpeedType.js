@@ -13,6 +13,7 @@ export default function useSpeedType(gameTime) {
   const [disable, setDisable] = useState(false);
   const [startTimer, setStartTimer] = useState(3);
   const [showStartTimer, setShowStartTimer] = useState(false);
+  const [showWpm, setShowWpm] = useState(false);
   let x = 3;
   const inputRef = useRef(null);
 
@@ -33,7 +34,7 @@ export default function useSpeedType(gameTime) {
   function startGame() {
     setText("");
     setWordCount(0);
-
+    setShowWpm(false);
     setDisable(true);
 
     x = 3;
@@ -79,6 +80,7 @@ export default function useSpeedType(gameTime) {
     setPlayAgain("Play Again");
     setTimeRemaining(gameTime);
     setDisable(false);
+    setShowWpm(true);
 
     const correctWords = [];
 
@@ -126,5 +128,6 @@ export default function useSpeedType(gameTime) {
     disable,
     startTimer,
     showStartTimer,
+    showWpm,
   ];
 }
