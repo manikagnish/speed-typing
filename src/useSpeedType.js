@@ -113,12 +113,6 @@ export default function useSpeedType(gameTime) {
     correctWords.forEach((correctWord) => {
       totalCorrectWords += correctWord.length;
     });
-    console.log(
-      "totalCorrectWords",
-      totalCorrectWords,
-      "totalWords",
-      totalWords
-    );
 
     setAccuracy(Math.round((totalCorrectWords / totalWords) * 100));
   }

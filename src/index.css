@@ -23,7 +23,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: 2em 10vw 0 10vw;
-  /* justify-content: space-evenly; */
 }
 
 header {
@@ -83,12 +82,13 @@ main {
 }
 
 textarea {
-  height: 20rem;
-  width: 100%;
-  margin: 1em 0;
-  padding: 0.5em;
+  position: absolute;
+  top: -200%;
+  left: -500%;
   font-size: inherit;
   font-family: inherit;
+  background-color: transparent;
+  border: none;
 }
 
 textarea:disabled {
@@ -144,23 +144,6 @@ button:disabled {
   color: rgba(238, 238, 238, 0.4);
 }
 
-/* textarea {
-  background-color: transparent;
-  font-family: inherit;
-  font-size: 2rem;
-  color: transparent;
-  caret-color: #eee;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -3;
-  border: 0;
-  outline: none;
-} */
-
 .start-btn {
   border: 1px solid #eee;
   background-color: rgba(238, 238, 238, 0.05);
@@ -192,21 +175,12 @@ footer {
   font-size: 5rem;
 }
 
-/* span:after {
-  content: "";
-  width: 2px;
-  height: 20px;
-  background: black;
-  opacity: 0;
-  display: inline-block;
-  animation: blink 0.5s linear infinite alternate;
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .set-time {
+    margin-top: 1em;
+  }
 }
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-} */
