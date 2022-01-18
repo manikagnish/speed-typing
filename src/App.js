@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useSpeedType from "./useSpeedType";
 import { FaKeyboard } from "react-icons/fa";
+import StartGameTimer from "./components/StartGameTimer";
 
 function App() {
   const [gameTime, setGameTime] = useState(30);
@@ -16,6 +17,8 @@ function App() {
     wordCount,
     quote,
     disable,
+    startTimer,
+    showStartTimer,
   ] = useSpeedType(gameTime);
 
   const displayQuote = quote.split("");
@@ -45,9 +48,9 @@ function App() {
 
       <main>
         <div className="text-region">
-          <span style={{ color: "#3f3fff", fontSize: "2rem" }}>
+          <div style={{ color: "#3f3fff", fontSize: "2rem" }}>
             {timeRemaining}
-          </span>
+          </div>
           <p>
             {displayQuote.map((s, i) => {
               let cname;
@@ -77,15 +80,18 @@ function App() {
               setText(e.target.value);
             }}
           />
+          {showStartTimer && <StartGameTimer startTimer={startTimer} />}
         </div>
         <button className="start-btn" onClick={startGame} disabled={start}>
           {playAgain}
         </button>
+
+        {/* TODO: StartGameCounter component */}
+        {/* TODO: display WPM result in a component */}
+        {/* <p className="wpm">Your typing speed is: {wordCount} wpm</p> */}
       </main>
 
       <footer>
-        {/* <p className="time">Time remaining: {timeRemaining}</p> */}
-        {/* <p className="wpm">Your typing speed is: {wordCount} wpm</p> */}
         <small style={{ textAlign: "center", display: "block" }}>
           &copy; speedtype 2022 all rights reserved
         </small>

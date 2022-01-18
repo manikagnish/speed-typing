@@ -11,7 +11,9 @@ export default function useSpeedType(gameTime) {
   const [textArr, setTextArr] = useState("");
   const [addLine, setAddLine] = useState(true);
   const [disable, setDisable] = useState(false);
-
+  const [startTimer, setStartTimer] = useState(3);
+  const [showStartTimer, setShowStartTimer] = useState(false);
+  let x = 3;
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function useSpeedType(gameTime) {
     const fetchQuote = async () => {
       const res = await fetch("https://api.quotable.io/random");
       const data = await res.json();
-      setQuote(quote + data.content + " ");
+      setQuote((quote) => quote + data.content + " ");
     };
 
     fetchQuote();
@@ -31,11 +33,29 @@ export default function useSpeedType(gameTime) {
   function startGame() {
     setText("");
     setWordCount(0);
-    setStart(true);
+
     setDisable(true);
-    setTimeout(() => {
-      inputRef.current.focus();
-    }, 100);
+
+    x = 3;
+    setStartTimer(3);
+    setShowStartTimer(true);
+
+    const interval = setInterval(() => {
+      setStartTimer((startTimer) => startTimer - 1);
+      x--;
+
+      if (x === 0) {
+        clearInterval(interval);
+        setShowStartTimer(false);
+        setStart(true);
+        setTimeout(() => {
+          inputRef.current.focus();
+        }, 100);
+      }
+
+      if (x === -1) {
+      }
+    }, 1000);
   }
 
   const splitText = (para, setPara) => {
@@ -61,22 +81,18 @@ export default function useSpeedType(gameTime) {
     setDisable(false);
 
     const correctWords = [];
-    console.log("correctWords: ", correctWords);
+
     // compare quoteArr and textArr
     for (let i = 0; i < quoteArr.length; i++) {
       if (quoteArr[i] === textArr[i]) {
         correctWords.push(textArr[i]);
       }
     }
-    console.log("correctWords updated: ", correctWords);
+
     // count no of characters in correctWords array
     correctWords.forEach((word) => {
-      console.log(word.length);
       setWordCount((prevCount) => prevCount + word.length);
-      console.log("wordCount", wordCount);
     });
-
-    console.log("wordcount: ", wordCount);
 
     if (gameTime === 30) {
       setWordCount((wordCount) => wordCount / 2.5);
@@ -108,5 +124,7 @@ export default function useSpeedType(gameTime) {
     wordCount,
     quote,
     disable,
+    startTimer,
+    showStartTimer,
   ];
 }
