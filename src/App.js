@@ -20,6 +20,7 @@ function App() {
     startTimer,
     showStartTimer,
     showWpm,
+    accuracy,
   ] = useSpeedType(gameTime);
 
   const displayQuote = quote.split("");
@@ -88,7 +89,10 @@ function App() {
         </button>
 
         {showWpm && (
-          <p className="wpm">Your typing speed is: {wordCount} wpm</p>
+          <>
+            <p className="wpm">Your typing speed is: {wordCount} wpm</p>
+            <p className="wpm">Your typing accuracy is: {accuracy}%</p>
+          </>
         )}
       </main>
 

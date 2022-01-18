@@ -15,6 +15,7 @@ export default function useSpeedType(gameTime) {
   const [showStartTimer, setShowStartTimer] = useState(false);
   const [showWpm, setShowWpm] = useState(false);
   let x = 3;
+  const [accuracy, setAccuracy] = useState(0);
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -103,6 +104,23 @@ export default function useSpeedType(gameTime) {
     } else if (gameTime === 120) {
       setWordCount((wordCount) => wordCount / 10);
     }
+
+    let totalWords = 0;
+    textArr.forEach((text) => {
+      totalWords += text.length;
+    });
+    let totalCorrectWords = 0;
+    correctWords.forEach((correctWord) => {
+      totalCorrectWords += correctWord.length;
+    });
+    console.log(
+      "totalCorrectWords",
+      totalCorrectWords,
+      "totalWords",
+      totalWords
+    );
+
+    setAccuracy(Math.round((totalCorrectWords / totalWords) * 100));
   }
 
   useEffect(() => {
@@ -129,5 +147,6 @@ export default function useSpeedType(gameTime) {
     startTimer,
     showStartTimer,
     showWpm,
+    accuracy,
   ];
 }

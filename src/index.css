@@ -41,6 +41,9 @@ h1 {
 
 h1 svg {
   margin-right: 5px;
+  color: #3f3fff;
+  margin-top: 3px;
+  font-size: 4rem;
 }
 
 .set-time {
@@ -125,10 +128,12 @@ button:disabled {
 .correct {
   /* color: #8cff3f; */
   color: #eee;
+  text-decoration: underline;
 }
 
 .incorrect {
   color: rgb(221, 74, 74);
+  text-decoration: underline;
   text-decoration: underline;
 }
 
@@ -173,7 +178,6 @@ footer {
 }
 
 .start-game-timer {
-  /* box-shadow: 0 2px 2px rgba(255, 255, 255, 0.25); */
   color: #eee;
   text-align: center;
   width: 100%;
