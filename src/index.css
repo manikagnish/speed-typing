@@ -13,15 +13,70 @@ body {
   font-size: 1.6rem;
   font-family: "Poppins", "sans-serif";
   min-height: 100vh;
-  padding: 2em 10vw;
   background-color: #333;
   color: #eee;
   overflow: "hidden";
 }
 
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2em 10vw 0 10vw;
+  /* justify-content: space-evenly; */
+}
+
+header {
+  display: flex;
+  align-items: center;
+}
+
 h1 {
   text-align: center;
-  margin-bottom: 1.5em;
+  margin-right: auto;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+}
+
+h1 svg {
+  margin-right: 5px;
+}
+
+.set-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-container {
+  display: flex;
+  align-items: center;
+  margin-left: 1em;
+}
+
+.btn-container button {
+  margin: auto 0.5em;
+  padding: 0.1em 0.8em;
+  background-color: #eee;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.btn-container button:hover,
+.btn-container button:active,
+.btn-container button:focus {
+  background-color: #2561d1;
+  color: #fff;
+}
+
+.set-time p {
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+
+main {
+  margin: auto;
 }
 
 textarea {
@@ -38,18 +93,27 @@ textarea:disabled {
 }
 
 p {
-  text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 0.5em;
+}
+
+.time,
+.wpm {
+  text-align: center;
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+.time {
+  margin-top: 1em;
 }
 
 button {
   display: block;
-  padding: 1em 2em;
+  padding: 0.5em 1em;
   border: 0;
   border-radius: 5px;
   font-family: inherit;
-  margin: 0.5em auto;
+  margin: 2em auto;
   cursor: pointer;
 }
 
@@ -59,7 +123,8 @@ button:disabled {
 }
 
 .correct {
-  color: #8cff3f;
+  /* color: #8cff3f; */
+  color: #eee;
 }
 
 .incorrect {
@@ -67,29 +132,42 @@ button:disabled {
   text-decoration: underline;
 }
 
-.set-time {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.text-region {
+  position: relative;
+  margin: 2em auto;
+  padding: 1em;
+  color: rgba(238, 238, 238, 0.4);
 }
 
-.btn-container {
-  display: flex;
-  margin-left: 1em;
-}
-
-.btn-container button {
-  margin-right: 1em;
-  padding: 0.1em 0.8em;
-  margin-top: 0;
-  background-color: #eee;
+textarea {
+  background-color: transparent;
   font-family: inherit;
-  transition: all 0.3s ease;
+  font-size: 2rem;
+  color: transparent;
+  caret-color: #eee;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -3;
+  border: 0;
+  outline: none;
 }
 
-.btn-container button:hover,
-.btn-container button:active,
-.btn-container button:focus {
-  background-color: #2561d1;
-  color: #fff;
+.start-btn {
+  border: 1px solid #eee;
+  background-color: rgba(238, 238, 238, 0.05);
+  color: #eee;
+  transition: all 0.3s ease-in-out;
+}
+
+.start-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+footer {
+  margin-top: auto;
+  margin-bottom: 5em;
 }

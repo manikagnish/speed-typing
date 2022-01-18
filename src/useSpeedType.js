@@ -60,7 +60,6 @@ export default function useSpeedType(gameTime) {
     setTimeRemaining(gameTime);
     setDisable(false);
 
-    // TODO: speed calculator
     const correctWords = [];
     console.log("correctWords: ", correctWords);
     // compare quoteArr and textArr
